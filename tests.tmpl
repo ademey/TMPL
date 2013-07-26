@@ -1,0 +1,16 @@
+<script id="tmpl-event-list" type="text/x-handlebars-template">
+
+<section class="article-list events-list">
+  {{#data}}
+  {{#something val}} {{/something}}
+  {{ #else }} {{ /else }}
+  <article class="list-item horizontal row">
+    <img src="{{ this.image }}" />
+      <span>{{this.type}}</span>
+      <h3>{{name}}</h3>
+        {{ this.summary.else }}
+  </article>
+  {{/data}}
+</section>
+
+</script>

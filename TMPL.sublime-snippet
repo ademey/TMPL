@@ -1,6 +1,6 @@
 <snippet>
-	<content><![CDATA[<script id="$0" type="text/x-handlebars-template">
-$1
+	<content><![CDATA[<script id="$1" type="text/x-handlebars-template">
+$0
 </script>]]></content>
 	<tabTrigger>tmpl</tabTrigger>
 	<scope>text.tmpl</scope>
