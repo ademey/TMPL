@@ -1,16 +1,19 @@
 <script id="tmpl-event-list" type="text/x-handlebars-template">
 
-<section class="article-list events-list">
-  {{#data}}
-  {{#something val}} {{/something}}
-  {{ #else }} {{ /else }}
-  <article class="list-item horizontal row">
-    <img src="{{ this.image }}" />
-      <span>{{this.type}}</span>
-      <h3>{{name}}</h3>
+
+  {{#each data}}
+    {{#foo val}} {{/foo}}
+    {{ #else }} {{ /else }}
+    {{ @index }}
+    <article class="list-item horizontal {{ this }}">
+      <img src='{{ this.image }}' />
+        <span>{{this.type}}</span>
+        <h3>{{name}}</h3>
         {{ this.summary.else }}
-  </article>
+    </article>
+    {{! a comment }}
+    {{!-- another comment --}}
   {{/data}}
-</section>
+
 
 </script>

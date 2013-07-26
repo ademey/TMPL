@@ -142,14 +142,8 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>--</string>
-					<key>name</key>
-					<string>invalid.illegal.bad-comments-or-CDATA.html</string>
-				</dict>
-				<dict>
 					<key>include</key>
-					<string>#embedded-code</string>
+					<string>#tag-generic-attribute</string>
 				</dict>
 			</array>
 		</dict>
@@ -346,10 +340,8 @@
 			</array>
 		</dict>
 		<dict>
-			<key>_USE</key>
-			<string>Match a {{#operator}} tag without vars</string>
 			<key>begin</key>
-			<string>(\{\{)((?i:\s*\#[a-zA-Z0-9:]+)\b\s*([a-zA-Z0-9:.]+)?)</string>
+			<string>(\{\{)((?i:\s*[\#@][a-zA-Z0-9:]+)\b\s*([a-zA-Z0-9:.]+)?)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -368,6 +360,8 @@
 					<string>variable.parameter.function.js</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Match a {{#operator}} tag without vars</string>
 			<key>end</key>
 			<string>(\}\})</string>
 			<key>endCaptures</key>
@@ -379,13 +373,11 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>meta.tag.block.any.html</string>
+			<string>meta.tag.block.operator.tmpl</string>
 			<key>patterns</key>
 			<array/>
 		</dict>
 		<dict>
-			<key>_USE</key>
-			<string>Match a singe var tag</string>
 			<key>begin</key>
 			<string>(\{\{)((?i:\s*[a-zA-Z0-9:.]+)\b)</string>
 			<key>beginCaptures</key>
@@ -401,6 +393,8 @@
 					<string>variable.parameter.function.js</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Match a single var tag</string>
 			<key>end</key>
 			<string>(\}\})</string>
 			<key>endCaptures</key>
@@ -412,7 +406,7 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>meta.tag.block.any.html</string>
+			<string>meta.tag.block.variable.tmpl</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -422,8 +416,29 @@
 			</array>
 		</dict>
 		<dict>
-			<key>_USE</key>
-			<string>Match a {{#operator}} close tag {{/operator}}</string>
+			<key>begin</key>
+			<string>{{!</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.html</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\s*}}</string>
+			<key>name</key>
+			<string>comment.block.html</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#embedded-code</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>(\{\{)(\s?\/[a-zA-Z0-9:]+)</string>
 			<key>beginCaptures</key>
@@ -439,6 +454,8 @@
 					<string>support.constant.js</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Match a {{#operator}} close tag {{/operator}}</string>
 			<key>end</key>
 			<string>(\}\})</string>
 			<key>endCaptures</key>

@@ -226,11 +226,7 @@
          "begin":"<!--",
          "patterns":[
             {
-               "match":"--",
-               "name":"invalid.illegal.bad-comments-or-CDATA.html"
-            },
-            {
-               "include":"#embedded-code"
+               "include":"#tag-generic-attribute"
             }
          ],
          "captures":{
@@ -365,9 +361,9 @@
          "name":"meta.tag.block.any.html"
       },
       {
-         "_USE": "Match a {{#operator}} tag without vars",
+         "comment": "Match a {{#operator}} tag without vars",
          "end":"(\\}\\})",
-         "begin":"(\\{\\{)((?i:\\s*\\#[a-zA-Z0-9:]+)\\b\\s*([a-zA-Z0-9:.]+)?)",
+         "begin":"(\\{\\{)((?i:\\s*[\\#@][a-zA-Z0-9:]+)\\b\\s*([a-zA-Z0-9:.]+)?)",
          "beginCaptures":{
             "1":{
                "name":"punctuation.definition.tag.begin.html"
@@ -387,10 +383,10 @@
                "name":"punctuation.definition.tag.end.html"
             }
          },
-         "name":"meta.tag.block.any.html"
+         "name":"meta.tag.block.operator.tmpl"
       },
       {
-         "_USE": "Match a single var tag",
+         "comment": "Match a single var tag",
          "end":"(\\}\\})",
          "begin":"(\\{\\{)((?i:\\s*[a-zA-Z0-9:.]+)\\b)",
          "beginCaptures":{
@@ -411,34 +407,25 @@
                "name":"punctuation.definition.tag.end.html"
             }
          },
-         "name":"meta.tag.block.any.html"
+         "name":"meta.tag.block.variable.tmpl"
       },
       {
-         "_USE": "Match a single var tag",
-         "end":"(\\}\\})",
-         "begin":"(\\{\\{)((?i:\\s*[a-zA-Z0-9:.]+)\\b)",
-         "beginCaptures":{
-            "1":{
-               "name":"punctuation.definition.tag.begin.html"
-            },
-            "2":{
-               "name":"variable.parameter.function.js"
-            }
-         },
+         "end":"\\s*}}",
+         "begin":"{{!",
          "patterns":[
             {
-               "include":"#tag-stuff"
+               "include":"#embedded-code"
             }
          ],
-         "endCaptures":{
-            "1":{
-               "name":"punctuation.definition.tag.end.html"
+         "captures":{
+            "0":{
+               "name":"punctuation.definition.comment.html"
             }
          },
-         "name":"meta.tag.block.any.html"
+         "name":"comment.block.html"
       },
       {
-         "_USE": "Match a {{#operator}} close tag {{/operator}}",
+         "comment": "Match a {{#operator}} close tag {{/operator}}",
          "end":"(\\}\\})",
          "begin":"(\\{\\{)(\\s?\\/[a-zA-Z0-9:]+)",
          "beginCaptures":{
